@@ -157,10 +157,11 @@ data BeamEffect r where
     => SqlSelect Sqlite a
     -> BeamEffect (Maybe a)
 
-  SqlCommand :: Sqlite.Query -> BeamEffect ()
-  -- ^ mainly to execute sql commands in between sql queries
-  -- e.g., DROP INDEX AND CREATE INDEX before insertions, delete or updates
-  -- This is necessary on large DB
+  SqlCommand :: Sqlite.Query
+    -> BeamEffect ()
+    -- ^ mainly to execute sql commands in between sql queries
+    -- e.g., DROP INDEX AND CREATE INDEX before insertions, delete or updates
+    -- This is necessary on large DB
 
   Combined
     :: [BeamEffect ()]
